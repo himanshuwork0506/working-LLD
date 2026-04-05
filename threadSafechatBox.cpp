@@ -6,9 +6,9 @@ Append Chat Message
 Signal Next User
 
 2. Classes
-ConsoleLogger: Output Formatter
-IChatBox: Chat Interface
-TurnBasedChat: Thread-Safe Manager
+ConsoleLogger: Output Formatter - logMessage
+IChatBox: Chat Interface - addComment
+TurnBasedChat: Thread-Safe Manager  - addComment, turn management, condition variable
 
 3. Requirements
 Functional:

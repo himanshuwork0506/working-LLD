@@ -6,7 +6,7 @@ Process & Pass: Each node dispenses its notes and passes the remainder down.
 Resolve: Print the receipt if successful, or throw an error if money is leftover.
 
 2. Classes
-IDispenser: Standard interface for all dispensers.
+IDispenser: Standard interface for all dispensers. setNext,dispense
 CashDispenser: Handles math and chain delegation.
 ATMLogger: Handles console output.
 

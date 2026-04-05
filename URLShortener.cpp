@@ -6,9 +6,9 @@ Generate Base62 Code
 Map and Return
 
 2. Classes
-IEncoder: Encoding Interface
-Base62Encoder: Base62 Logic
-TinyURL: Shortening Manager
+IEncoder: Encoding Interface - encode
+Base62Encoder: Base62 Logic - encode
+TinyURL: Shortening Manager - shorten, expand, maps, mutex
 
 3. Requirements
 Functional:

@@ -7,10 +7,10 @@ Reverse When Empty
 Stop at Destinations
 
 2. Classes
-ConsoleLogger: Output Formatting
-IElevator: Elevator Interface
-ScanElevator: SCAN Algorithm Logic
-ElevatorController: Request Manager
+ConsoleLogger: Output Formatting - logStop, logMove
+IElevator: Elevator Interface - addStop, process
+ScanElevator: SCAN Algorithm Logic - hasRequests, addStop, process
+ElevatorController: Request Manager - requestFloor, start
 
 3. Requirements
 Functional:

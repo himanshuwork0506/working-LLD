@@ -6,10 +6,10 @@ Auto-Release (RAII)
 Notify Waiting Threads
 
 2. Classes
-IConnection: Database Interface
-DbConnection: Concrete Database
-ConnectionPool: Concurrency Manager
-ConnectionGuard: Resource Auto-Manager
+IConnection: Database Interface - executeQuery
+DbConnection: Concrete Database - executeQuery
+ConnectionPool: Concurrency Manager - acquire, release
+ConnectionGuard: Resource Auto-Manager - RAII Wrapper for Connections
 
 3. Requirements
 Functional:

@@ -6,12 +6,12 @@ Undo Last Action
 Redo Reverted Action
 
 2. Classes
-ICommand: Action Interface
-ITextDocument: Editor Interface
-TextEditor: Document Receiver
-AppendCommand: Concrete Action
-CommandManager: History Controller
-Logger: Output Formatter
+ICommand: Action Interface - execute, undo
+ITextDocument: Editor Interface - append, erase, getText
+TextEditor: Document Receiver - append, erase, getText
+AppendCommand: Concrete Action  - execute, undo
+CommandManager: History Controller - execute, undo, redo
+Logger: Output Formatter - print
 
 3. Requirements
 Functional:

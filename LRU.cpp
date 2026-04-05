@@ -7,8 +7,8 @@ Insert New Data
 
 2. Classes
 Node: Data Container
-DoublyLinkedList: Chronological Order
-LRUCache: Eviction Manager
+DoublyLinkedList: Chronological Order - addFront, removeNode
+LRUCache: Eviction Manager - get, put, moveToFront
 
 3. Requirements
 Functional:

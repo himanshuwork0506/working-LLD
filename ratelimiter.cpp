@@ -6,11 +6,11 @@ Fetch Client Bucket
 Allow Or Reject
 
 2. Classes
-IBucket: Rate Interface
-LeakyBucket: Throttling Logic
-IBucketFactory: Creation Interface
-LeakyBucketFactory: Concrete Creator
-RateLimiter: Traffic Manager
+IBucket: Rate Interface - allowRequest
+LeakyBucket: Throttling Logic   - allowRequest
+IBucketFactory: Creation Interface - createBucket
+LeakyBucketFactory: Concrete Creator - createBucket
+RateLimiter: Traffic Manager - allowRequest, partners map
 
 3. Requirements
 Functional:

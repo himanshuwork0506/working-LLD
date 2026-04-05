@@ -6,11 +6,11 @@ Free Spot
 Calculate Fee
 
 2. Classes
-Vehicle: Transport Details
-Ticket: Parking Receipt
-SpotStrategy: Allocation Interface
-NearestFirstStrategy: Closest Spot Logic
-ParkingLot: Facility Manager
+Vehicle: Transport Details - plate, type
+Ticket: Parking Receipt - ticketId, spotId, entryHour
+SpotStrategy: Allocation Interface - getNextSpot
+NearestFirstStrategy: Closest Spot Logic - getNextSpot    
+ParkingLot: Facility Manager - park, exit, spot queues, active tickets
 
 3. Requirements
 Functional:

@@ -6,9 +6,9 @@ Evict Excess Videos
 Render Console Output
 
 2. Classes
-ITrendingService: Service Interface
-VideoTrendingService: Ranking Logic
-ConsoleView: Output Display
+ITrendingService: Service Interface - addView, getTopTrending
+VideoTrendingService: Ranking Logic - addView, getTopTrending
+ConsoleView: Output Display - renderTrending
 
 3. Requirements
 Functional:
