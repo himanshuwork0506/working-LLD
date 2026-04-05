@@ -1,3 +1,5 @@
+new word added - add in undo stack and clear redo stack - if undo executed, push to redo stack - if redo executed, push back to undo stack
+
 1. Code Flow
 Initialize Editor State
 Execute Text Command
@@ -61,6 +63,7 @@ public:
     
     string getText() const override { return text; }
 };
+
 
 // Concrete command encapsulating the append operation and its exact inverse.
 class AppendCommand : public ICommand {
