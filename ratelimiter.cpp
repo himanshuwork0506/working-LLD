@@ -1,3 +1,5 @@
+how many request can come in a given time frame and decide to allow or 
+reject them based on predefined rules.
 1. Code Flow
 Initialize Factory Rules
 Inject Dependency
