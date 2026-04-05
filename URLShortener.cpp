@@ -8,7 +8,7 @@ Map and Return
 2. Classes
 IEncoder: Encoding Interface - encode
 Base62Encoder: Base62 Logic - encode
-TinyURL: Shortening Manager - shorten, expand, maps, mutex
+TinyURL: Shortening Manager - shorten, expand - maps s2l l2s, mutex, counter = 1
 
 3. Requirements
 Functional:
