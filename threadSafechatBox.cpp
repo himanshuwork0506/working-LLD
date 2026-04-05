@@ -2,13 +2,14 @@
 Initialize Chat Instance
 Spawn User Threads
 Wait for Turn
-Append Chat Message
+Append Chat Message - store history in vector
 Signal Next User
 
 2. Classes
-ConsoleLogger: Output Formatter - logMessage
 IChatBox: Chat Interface - addComment
 TurnBasedChat: Thread-Safe Manager  - addComment, turn management, condition variable
+ConsoleLogger: Output Formatter - logMessage
+
 
 3. Requirements
 Functional:
@@ -77,7 +78,6 @@ public:
 void simulateUser(IChatBox* chat, int id) {
     for (int i = 1; i <= 3; ++i) {
         chat->addComment(id, "Message " + to_string(i));
-        this_thread::sleep_for(chrono::milliseconds(50)); 
     }
 }
 
