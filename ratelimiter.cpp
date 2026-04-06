@@ -1,34 +1,36 @@
 how many request can come in a given time frame and decide to allow or 
 reject them based on predefined rules.
 
-1. Code Flow
-Define Creation Lambda
+1. Code Flow (Direct Approach)
+Initialize Rate Limiter with Capacity & Leak rules
 Receive API Request
-Fetch/Create Bucket
+Fetch/Create Bucket directly inside the manager
 Calculate Capacity
 Allow Or Reject
 
 2. Classes
-IBucket: Rate Interface - allowRequest
-LeakyBucket: Throttling Logic - allowRequest
-RateLimiter: Traffic Manager - allowRequest, bucket management
+IBucket: Rate Interface
+LeakyBucket: Throttling Logic
+RateLimiter: Traffic Manager (Now directly builds LeakyBuckets)
 
 3. Requirements
 Functional:
+
 Throttle Client Requests
 Track Bucket State
 
 Non-Functional:
 Concurrency Thread-Safe
-Open/Closed Compliant
+~~Open/Closed Compliant~~ (Trade-off: We are sacrificing this principle for simplicity. The manager is now tightly coupled to the LeakyBucket).
 
+
+C++
 #include <iostream>
 #include <unordered_map>
 #include <mutex>
 #include <memory>
 #include <ctime>
 #include <algorithm>
-#include <functional> // Added for std::function
 
 using namespace std;
 
@@ -72,12 +74,13 @@ private:
     unordered_map<string, unique_ptr<IBucket>> partners;
     mutex globalMtx;
     
-    // MODERN C++ FIX: Instead of a whole Factory Class, we just store a function!
-    function<unique_ptr<IBucket>()> createBucket;
+    // Instead of a function, we just store the configuration values
+    int defaultCapacity;
+    double defaultLeakRate;
 
 public:
-    // Dependency Injection via Lambda
-    RateLimiter(function<unique_ptr<IBucket>()> creatorFunc) : createBucket(creatorFunc) {}
+    // Pass the raw configuration numbers directly into the constructor
+    RateLimiter(int cap, double leak) : defaultCapacity(cap), defaultLeakRate(leak) {}
 
     bool allowRequest(string name) {
         IBucket* bucket;
@@ -85,8 +88,8 @@ public:
         {
             lock_guard<mutex> lock(globalMtx);
             if (partners.find(name) == partners.end()) {
-                // Execute the lambda to create the specific bucket
-                partners[name] = createBucket();
+                // The manager directly creates the LeakyBucket itself
+                partners[name] = make_unique<LeakyBucket>(defaultCapacity, defaultLeakRate);
             }
             bucket = partners[name].get();
         }
@@ -97,11 +100,8 @@ public:
 
 // Application entry point simulating rapid API requests.
 int main() {
-    // 1. Define Creation Rule (Lambda)
-    // We pass a simple lambda function that acts as our "Factory"
-    RateLimiter rl([]() { 
-        return make_unique<LeakyBucket>(10, 2.0); 
-    });
+    // 1. Initialize with raw numbers instead of a lambda
+    RateLimiter rl(10, 2.0);
 
     cout << "--- Simulating Rapid Requests ---\n";
     for (int i = 1; i <= 12; ++i) {
